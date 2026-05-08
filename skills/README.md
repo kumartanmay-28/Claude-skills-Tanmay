@@ -2,7 +2,7 @@
 
 ## What Makes This Skill Different?
 
-Unlike generic JIRA automation or simple ticket creation tools, this skill was built to solve **real production problems** with test failure tracking at scale.
+Unlike generic JIRA automation or simple ticket creation tools, this skill provides **complete end-to-end JIRA lifecycle management** from ticket creation to closure, with specialized capabilities for test failure tracking at scale.
 
 ### 🎯 Purpose-Built for Test Failure Management
 
@@ -78,14 +78,26 @@ python scripts/bulk_update.py --tickets AIPCC-15363:15565 --sprint 32
 
 | Feature | Generic JIRA API | This Skill |
 |---------|------------------|------------|
+| **Lifecycle Coverage** |
 | Create tickets | ✅ | ✅ |
+| Workflow transitions | ✅ Manual | ✅ Automated |
+| Comments | ✅ Manual | ✅ Bulk |
+| Ticket linking | ✅ Manual | ✅ Bulk |
+| Attachments | ✅ Manual | ✅ Bulk |
+| Assignment | ✅ Manual | ✅ Bulk + JQL |
+| Watchers | ✅ Manual | ✅ Bulk |
+| Close/resolve | ✅ Manual | ✅ Bulk with resolution |
+| Advanced queries | ✅ Basic | ✅ JQL + formatting |
+| **Test Failure Features** |
 | Extract log errors | ❌ | ✅ Full error context |
 | Intelligent clubbing | ❌ | ✅ Multiple strategies |
 | Regression detection | ❌ | ✅ Cross-log analysis |
 | Coverage verification | ❌ | ✅ 100% guarantee |
-| Bulk operations | ✅ Basic | ✅ Advanced (JQL, ranges) |
 | ADF formatting | Manual | ✅ Automated |
+| **Scale** |
+| Bulk operations | ✅ Basic | ✅ Advanced (JQL, ranges) |
 | Production-tested | - | ✅ 61 real tickets |
+| **Lifecycle Coverage** | ~40% | **100%** ✅ |
 
 ### 🎓 When to Use This Skill
 
