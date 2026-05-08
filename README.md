@@ -315,7 +315,7 @@ python scripts/bulk_update.py --tickets AIPCC-15363:15565 --sprint $SPRINT
 
 ## Complete Lifecycle Management
 
-See **[LIFECYCLE.md](LIFECYCLE.md)** for comprehensive end-to-end workflows covering:
+See **[LIFECYCLE.md](skills/LIFECYCLE.md)** for comprehensive end-to-end workflows covering:
 
 - **Full ticket lifecycle**: Create → Triage → Assign → Work → Review → Close
 - **Common patterns**: Daily standups, sprint planning, release management, bug triage
