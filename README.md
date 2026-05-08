@@ -22,6 +22,10 @@ Completely generic scripts for automating JIRA ticket management. No hardcoding 
 11. **`close_tickets.py`** - Close/resolve tickets with proper resolution
 12. **`query_tickets.py`** - Advanced JQL queries with detailed output
 
+### Intelligent Automation (1 tool)
+
+13. **`auto_close_passed.py`** - Auto-close tickets when tests show explicit PASSED markers (conservative approach)
+
 ## Skills
 
 **`jira-ticket-manager`** - Claude Code skill for JIRA automation workflows
@@ -281,6 +285,42 @@ python scripts/query_tickets.py \
 python scripts/query_tickets.py \
   --jql "updated >= -1d AND status changed to Done"
 ```
+
+### 13. Auto-Close Passed Tests (Intelligent Automation)
+
+```bash
+# Auto-close tickets when tests show explicit PASSED markers
+# Conservative approach - only closes if PASSED keyword found in log
+
+# Basic usage
+python scripts/auto_close_passed.py \
+  --log latest_build.log \
+  --jql "status != Closed AND labels = pytorch_hermetic"
+
+# Dry run (safe - shows what would happen)
+python scripts/auto_close_passed.py \
+  --log pytorch_2.12_rc8_sgpu.log \
+  --jql "status = 'In Progress' AND labels = pytorch_hermetic" \
+  --dry-run
+
+# With build information
+python scripts/auto_close_passed.py \
+  --log /home/user/latest_sgpu.log \
+  --jql "labels = pytorch_hermetic AND status != Closed" \
+  --build-info "PyTorch 2.12-RC8"
+```
+
+**How it works:**
+- Scans log for **explicit PASSED markers** (e.g., `PASSED [0.5s] test/test_cuda.py::TestCuda::test_memory`)
+- Matches PASSED tests against open tickets
+- **Only closes if ALL tests in ticket show PASSED**
+- Conservative: won't close if test missing or PASSED marker not found
+- Adds comment with build info when closing
+
+**Safety features:**
+- Dry-run mode to preview
+- Requires explicit PASSED keyword (not just absence of failure)
+- ALL tests must pass before closing ticket
 
 ## Example: Hermetic Build Workflow
 
